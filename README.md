@@ -30,7 +30,7 @@ You can install the development version of cacc from
 [GitHub](https://github.com/) with:
 
 ``` r
-# Check if the`devtools` package needs to be installed
+# Check if the `devtools` package needs to be installed
 if (!require("devtools")) install.package("devtools")
 
 # Install the `cacc` package from GitHub
