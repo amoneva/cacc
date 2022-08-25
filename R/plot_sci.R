@@ -11,7 +11,7 @@
 #' @references Hart, T. C. (2019). Identifying Situational Clustering and Quantifying Its Magnitude in Dominant Case Configurations: New Methods for Conjunctive Analysis. *Crime & Delinquency, 66*(1), 143-159.
 #'
 #' @examples
-#' plot_sci(cacc(data = test_data, ivs = c(iv1, iv2, iv3, iv4), dv = dv1))
+#' plot_sci(cacc_matrix = cacc(onharassment, ivs = sex:privacy, dv = rep_victim))
 
 plot_sci <- function (cacc_matrix) {
 

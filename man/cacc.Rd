@@ -11,7 +11,7 @@ cacc(data, ivs, dv)
 
 \item{ivs}{A vector of names of the independent variables, without quotes. Variables must be categorical, either integer, character, or factor.}
 
-\item{dv}{Name of the dependent variable, without quotes. Variable must be dichotomous with values 0 (absence) and 1 (presence).}
+\item{dv}{Name of the dependent variable, without quotes. Variable must be a dichotomous integer or factor with values 0 (absence) and 1 (presence).}
 }
 \value{
 Returns a tibble with the CACC matrix.
@@ -20,11 +20,15 @@ Returns a tibble with the CACC matrix.
 Computes a Conjunctive Analysis of Case Configurations (CACC).
 }
 \examples{
-cacc(data = test_data, ivs = c(iv1, iv2, iv3, iv4), dv = dv1)
-cacc(data = test_data, ivs = c(iv1_c, iv2_c, iv3_c, iv4_c), dv = dv1)
+cacc(
+  data = onharassment,
+  ivs = c(sex, age, hours, snapchat, instagram, facebook, twitter, name, photos, privacy),
+  dv = rep_victim
+)
+cacc(onharassment, ivs = sex:privacy, dv = rep_victim)
 
 # Syntax with the native R pipe
-test_data |> cacc(ivs = c(iv1, iv2, iv3, iv4), dv = dv1)
+onharassment |> cacc(ivs = sex:privacy, dv = rep_victim)
 }
 \references{
 Miethe, T. D., Hart, T. C., & Regoeczi, W. C. (2008). The Conjunctive Analysis of Case Configurations: An Exploratory Method for Discrete Multivariate Analyses of Crime Data. \emph{Journal of Quantitative Criminology, 24}, 227–241. https://doi.org/10.1007/s10940-008-9044-8

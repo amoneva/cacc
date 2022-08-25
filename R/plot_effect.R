@@ -15,10 +15,10 @@
 #'
 #' @examples
 #' plot_effect(
-#'   cacc_matrix = cacc(data = test_data, ivs = c(iv1, iv2, iv3, iv4), dv = dv1),
-#'   iv = iv4,
-#'   value = 0
-#' )
+#'   cacc_matrix = cacc(onharassment, ivs = sex:privacy, dv = rep_victim),
+#'   iv = age,
+#'   value = "15-17"
+#')
 
 plot_effect <- function (cacc_matrix, iv, value) {
 
