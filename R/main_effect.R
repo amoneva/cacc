@@ -33,40 +33,32 @@ main_effect <- function (cacc_matrix, iv, value, summary = TRUE) {
     dplyr::group_by(dplyr::across(-c({{ iv }}, .data$freq, .data$p))) |>
     dplyr::filter(dplyr::n() > 1) |>
     dplyr::arrange({{ iv }}, .by_group = TRUE) |>
-    dplyr::mutate(effect = dplyr::if_else(
-      condition = {{ iv }} == value,
-      true = NA_real_,
-      false = .data$p - dplyr::nth(.data$p, which({{ iv }} == value))
-    )) |>
+    dplyr::mutate(
+      pre_effect = mean(stats::na.omit(dplyr::if_else(
+        condition = {{ iv }} == value,
+        true = NA_real_,
+        false = .data$p
+      ))),
+      effect = dplyr::if_else(
+        condition = {{ iv }} == value,
+        true = .data$p - .data$pre_effect,
+        false = NA_real_,
+      )
+    ) |>
     dplyr::ungroup() |>
     tidyr::drop_na()
 
-  # TEST ----
+  # Return summary statistics for main effects ----
   if ({{ summary }} == TRUE) {
 
     return (
       cacc_effect |>
         dplyr::summarise(
-          median = round(
-            x = stats::median(.data$effect),
-            digits = 3
-          ),
-          mean = round(
-            x = mean(.data$effect),
-            digits = 3
-          ),
-          sd = round(
-            x = stats::sd(.data$effect),
-            digits = 3
-          ),
-          min = round(
-            x = min(.data$effect),
-            digits = 3
-          ),
-          max = round(
-            x = max(.data$effect),
-            digits = 3
-          )
+          median = round(x = stats::median(.data$effect), digits = 3),
+          mean = round(x = mean(.data$effect), digits = 3),
+          sd = round(x = stats::sd(.data$effect), digits = 3),
+          min = round(x = min(.data$effect), digits = 3),
+          max = round(x = max(.data$effect), digits = 3)
         )
     )
 

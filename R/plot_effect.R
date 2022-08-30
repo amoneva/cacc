@@ -27,11 +27,18 @@ plot_effect <- function (cacc_matrix, iv, value) {
     dplyr::group_by(dplyr::across(-c({{ iv }}, .data$freq, .data$p))) |>
     dplyr::filter(dplyr::n() > 1) |>
     dplyr::arrange({{ iv }}, .by_group = TRUE) |>
-    dplyr::mutate({{ iv }} := dplyr::if_else(
-      condition = {{ iv }} == value,
-      true = NA_real_,
-      false = .data$p - dplyr::nth(.data$p, which({{ iv }} == value))
-    )) |>
+    dplyr::mutate(
+      pre_effect = mean(stats::na.omit(dplyr::if_else(
+        condition = {{ iv }} == value,
+        true = NA_real_,
+        false = .data$p
+      ))),
+      {{ iv }} := dplyr::if_else(
+        condition = {{ iv }} == value,
+        true = .data$p - .data$pre_effect,
+        false = NA_real_,
+      )
+    ) |>
     dplyr::ungroup() |>
     tidyr::drop_na()
 
@@ -40,14 +47,8 @@ plot_effect <- function (cacc_matrix, iv, value) {
   # Declare the summary stats
   summary_stats <- cacc_effect |>
     dplyr::summarise(
-      mean = round(
-        x = mean({{ iv }}),
-        digits = 3
-      ),
-      sd = round(
-        x = stats::sd({{ iv }}),
-        digits = 3
-      )
+      mean = round(x = mean({{ iv }}), digits = 3),
+      sd = round(x = stats::sd({{ iv }}), digits = 3)
     )
 
   # Produce a distribution plot
