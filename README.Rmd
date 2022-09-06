@@ -42,7 +42,9 @@ devtools::install_github("amoneva/cacc")
 ## Examples
 
 ```{r load}
-# Load {cacc}
+#| warning: false
+
+# Load {cacc} and the {tidyverse}
 library(cacc)
 library(tidyverse)
 ```
