@@ -2,7 +2,8 @@
 
 * Local Windows 10 Enterprise, R 4.2.0, 64 bit
 * macOS 10.13.6 High Sierra, R-release, brew (via `rhub`)
-* Windows Server 2022, R-release, 32/64 bit (via `rhub`)
+* Windows Server 2022, R-release & R-devel, 32/64 bit (via `rhub`)
+
 
 ## R CMD check results
 
