@@ -1,5 +1,7 @@
 ## Test environments
 
+* Debian Linux, R-release, GCC (via `rhub`)
+* Fedora Linux, R-devel, GCC (via `rhub`)
 * Local Windows 10 Enterprise, R 4.2.0, 64 bit
 * macOS 10.13.6 High Sierra, R-release, brew (via `rhub`)
 * Windows Server 2022, R-release & R-devel, 32/64 bit (via `rhub`)
@@ -35,3 +37,11 @@ This NOTE was only found on the Local Windows environment. As noted in [R-hub is
 ## Downstream dependencies
 
 There are currently no downstream dependencies for this package.
+
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Added two test environments: Debian Linux, R-release, GCC (via `rhub`); and Fedora Linux, R-devel, GCC (via `rhub`).
+* Rewritten the DESCRIPTION to avoid the formula "This R package".
+* Formatted the references in the DESCRIPTION according to the [Checklist for CRAN submissions](https://cran.r-project.org/web/packages/submission_checklist.html).
