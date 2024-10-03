@@ -1,38 +1,6 @@
-## Test environments
-
-* Debian Linux, R-release, GCC (via `rhub`)
-* Fedora Linux, R-devel, GCC (via `rhub`)
-* Local Windows 10 Enterprise, R 4.2.0, 64 bit
-* macOS 10.13.6 High Sierra, R-release, brew (via `rhub`)
-* Windows Server 2022, R-release & R-devel, 32/64 bit (via `rhub`)
-
-
 ## R CMD check results
 
-There were no ERRORs or WARNINGs.
-
-There were 2 NOTEs:
-
-```
-❯ checking CRAN incoming feasibility ... [13s] NOTE
-  Maintainer: 'Asier Moneva <amoneva@nscr.nl>'
-  
-  New submission
-  
-  Possibly misspelled words in DESCRIPTION:
-    CACC (10:117, 10:356)
-    Miethe (10:124)
-    Regoeczi (10:140)
-```
-
-The possibly misspelled words are correct.
-
-```
-❯ checking for detritus in the temp directory ... NOTE
-  Found the following files/directories:
-    'lastMiKTeXException'
-```
-This NOTE was only found on the Local Windows environment. As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this could be due to a bug/crash in MiKTeX and can likely be ignored.
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Downstream dependencies
 
@@ -40,8 +8,8 @@ There are currently no downstream dependencies for this package.
 
 ## Resubmission
 
-This is a resubmission. In this version I have:
+This is a resubmission. In this version `(0.1.1)` I have:
 
-* Added two test environments: Debian Linux, R-release, GCC (via `rhub`); and Fedora Linux, R-devel, GCC (via `rhub`).
-* Rewritten the DESCRIPTION to avoid the formula "This R package".
-* Formatted the references in the DESCRIPTION according to the [Checklist for CRAN submissions](https://cran.r-project.org/web/packages/submission_checklist.html).
+* Updated the `DESCRIPTION` to specify `R (>= 4.1)` for native pipe usage (@bbolker, #1).
+* Updated the URL in `NEWS.md` from the previous version (`0.1.0`) to its canonical form.
+* Updated `CITATION` to use `bibentry()` instead of `citEntry()`.
